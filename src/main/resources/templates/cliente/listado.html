@@ -6,10 +6,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Práctica</title>
-        <meta charset="UTF-8"/>
+        <title>Clientes</title>
     </head>
     <body>
-        
+        <header th:replace="~{layout/plantilla :: header}"/>
+
+        <section th:replace="~{cliente/fragmentos :: listadoClientes}"/>
+        <section th:replace="~{cliente/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{cliente/fragmentos :: agregarCliente}"/>
+
     </body>
 </html>
