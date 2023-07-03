@@ -6,14 +6,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Práctica</title>
+        <title>facturas</title>
     </head>
     <body>
         <header th:replace="~{layout/plantilla :: header}"/>
 
-        <section th:replace="~{arbol/fragmentos :: botonesAgregar}"/>
-        <section th:replace="~{arbol/fragmentos :: agregarArbol}"/>
-        <section th:replace="~{arbol/fragmentos :: listadoArboles}"/>
+        <section th:replace="~{facturas/fragmentos :: botonesAgregar}"/>
+        <section th:replace="~{facturas/fragmentos :: agregarFacturas}"/>
+        <section th:replace="~{facturas/fragmentos :: listadoFacturas}"/>
 
         <footer th:replace="~{layout/plantilla :: footer}"/>
     </body>
