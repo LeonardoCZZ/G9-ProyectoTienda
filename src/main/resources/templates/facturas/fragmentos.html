@@ -105,22 +105,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <th>[[#{facturas.productos_adquiridos}]]</th>
                                                 <th>[[#{facturas.subtotal}]]</th>
                                                 <th>[[#{facturas.montoTotal}]]</th>
+                                                <th>[[#{facturas.activo}]]</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr th:each="facturas, contador : ${facturas}">
-                                                <th>[[#{facturas.id_pago}]]</th>
-                                                <th>[[#{facturas.id_producto}]]</th>
-                                                <th>[[#{facturas.cantidad}]]</th>
-                                                <th>[[#{facturas.monto}]]</th>
-                                                <th>[[#{facturas.metodoPago}]]</th>
+                                                <th>[[#{facturas.id_factura}]]</th>
+                                                <th>[[#{facturas.id_cliente}]]</th>
+                                                <th>[[#{facturas.id_empleado}]]</th>
+                                                <th>[[#{facturas.productos_adquiridos}]]</th>
+                                                <th>[[#{facturas.subtotal}]]</< .mnjhjupnmñ .m,
+*].th2
+                                                <th>[[#{facturas.montoTotal}]]</th>
                                                 <td th:text="${facturas.activo} ? 'Activa' : 'Inactiva'"></td>
                                                 <td>
                                                     <a th:href="@{/facturas/eliminar/}+${empleado.idFacturas}" class="btn btn-danger">
                                                         <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                                                     </a>
-                                                    <a th:href="@{/facturas/modificar/}+${empleado.idFacturas}" class="btn btn-success">
+                                                    <a th:href="@{/facturas/modificar/}+${facturas.idFacturas}" class="btn btn-success">
                                                         <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]
                                                     </a>
                                                 </td>
@@ -137,7 +140,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-3">
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
-                                <h3>[[#{empleado.total}]]</h3>
+                                <h3>[[#{facturas.total}]]</h3>
                                 <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalFacturas}]]</h4>
                             </div>
                         </div>
@@ -172,31 +175,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="mb-3">
-                                                        <label for="id_pago">[[#{facturas.id_pago}]]</label>
+                                                        <label for="id_factura">[[#{facturas.id_factura}]]</label>
                                                         <input type="int" class="form-control" 
-                                                               name="id_pago" th:field="*{id_pago}"
+                                                               name="id_factura" th:field="*{id_factura}"
                                                                required="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="id_producto">[[#{facturas.id_producto}]]</label>
+                                                        <label for="id_cliente">[[#{facturas.id_cliente}]]</label>
                                                         <input type="int" class="form-control" 
-                                                               name="id_producto" th:field="*{id_producto}"
+                                                               name="id_cliente" th:field="*{id_cliente}"
                                                                required="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="cantidad">[[#{facturas.cantidad}]]</label>
+                                                        <label for="id_empleado">[[#{facturas.id_empleado}]]</label>
                                                         <input type="int" class="form-control" 
-                                                               name="cantida" th:field="*{cantidad}"
+                                                               name="id_empleado" th:field="*{id_empleado}"
                                                                required="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="monto">[[#{empleado.monto}]]</label>
+                                                        <label for="productos_adquiridos">[[#{facturas.productos_adquiridos}]]</label>
                                                         <input type="int" class="form-control" 
-                                                               name="monto" th:field="*{monto}"
+                                                               name="productos_adquiridos" th:field="*{productos_adquiridos}"
                                                                required="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="metodoPago">[[#{empleado.metodoPago}]]</label>
+                                                        <label for="metodoPago">[[#{facturas.metodoPago}]]</label>
                                                         <input type="text" class="form-control" 
                                                                name="metodoPago" th:field="*{metodoPago}"
                                                                required="true">
