@@ -38,24 +38,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <form th:action="@{/facturas/guardar}" th:object="${facturas}" method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="id_pago">[[#{facturas.id_pago}]]</label>
-                                    <input type="int" class="form-control" name="nombre" required="true"/>
+                                    <label for="id_factura">[[#{facturas.id_factura}]]</label>
+                                    <input type="int" class="form-control" name="id_factura" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="id_producto">[[#{facturas.id_producto}]]</label>
-                                    <input type="int" class="form-control" name="apellido 1" required="true"/>
+                                    <label for="id_cliente">[[#{facturas.id_cliente}]]</label>
+                                    <input type="int" class="form-control" name="id_cliente" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="cantidad">[[#{facturas.cantidad}]]</label>
-                                    <input type="int" class="form-control" name="cedula" required="true"/>
+                                    <label for="id_empleado">[[#{facturas.id_empleado}]]</label>
+                                    <input type="int" class="form-control" name="id_empleado" required="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="monto">[[#{facturas.monto}]]</label>
                                     <input type="int" class="form-control" name="correo" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="MetodoPago">[[#{facturas.metodoPago}]]</label>
-                                    <input type="int" class="form-control" name="telefono" required="true"/>
+                                    <label for="productos_adquiridos">[[#{facturas.productos_adquiridos}]]</label>
+                                    <input type="int" class="form-control" name="productos_adquiridos" required="true"/>
+                                </div>
+                                    <div class="mb-3">
+                                    <label for="subtotal">[[#{facturas.subtotal}]]</label>
+                                    <input type="int" class="form-control" name="subtotal" required="true"/>
+                                </div>
+                                   </div>
+                                    <div class="mb-3">
+                                    <label for="subtotal">[[#{facturas.subtotal}]]</label>
+                                    <input type="int" class="form-control" name="subtotal" required="true"/>
+                                </div>
+                               </div>
+                                    <div class="mb-3">
+                                    <label for="montoTotal">[[#{facturas.montoTotal}]]</label>
+                                    <input type="int" class="form-control" name="montoTotal" required="true"/>
                                 </div>
                                 
                             </div>
