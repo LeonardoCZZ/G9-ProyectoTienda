@@ -7,10 +7,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
-        <title>Práctica</title>
+        <title>Pagos</title>
     </head>
     <body>
-        <!-- 1 Seccion para crear el boton de agregar... llamara a una ventana modal-->
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
             <div class="container">
                 <div class="row">
@@ -19,44 +18,52 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             type="button" 
                             class="btn btn-primary btn-block" 
                             data-bs-toggle="modal" 
-                            data-bs-target="#agregarCategoria">
-                            <i class="fas fa-plus"></i> [[#{categoria.agregar}]]
+                            data-bs-target="#agregarPagos">
+                            <i class="fas fa-plus"></i> [[#{cliente.agregar}]]
                         </button>
                     </div>
                 </div>
             </div>
-
         </section>
 
-        <!-- 2 Fragmento para agregar categoria, es la ventana modal-->
-        <section th:fragment="agregarArbol">
-            <div id="agregarCategoria" 
-                 class="modal fade" 
-                 tabindex="-1" 
-                 aria-labelledby="exampleModalLabel" 
-                 aria-hidden="true">
+        <!-- Fragmento para agregar cliente - Ventana modal -->
+        <section th:fragment="agregarPagos">
+            <div id="agregarPagos" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-md">
                     <div class="modal-content">
                         <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title">[[#{categoria.agregar}]]</h5>
+                            <h5 class="modal-title">[[#{pagos.agregar}]]</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <form th:action="@{/categoria/guardar}" th:object="${categoria}"
-                              method="POST" class="was-validated" enctype="multipart/form-data">
+                        </div>
+                        <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
-                                    <label for="descripcion">[[#{categoria.descripcion}]]</label>
-                                    <input type="text" class="form-control" name="descripcion" required="true"/>
+                                    <label for="id_pago">[[#{pagos.id_pago}]]</label>
+                                    <input type="text" class="form-control" name="id_pago" required="true"/>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="activo">[[#{categoria.activo}]]</label>
+                                    <label for="id_producto">[[#{pagos.id_producto1}]]</label>
+                                    <input type="int" class="form-control" name="id_producto 1" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre">[[#{pagos.cantidad2}]]</label>
+                                    <input type="int" class="form-control" name="cantidad 2" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="monto">[[#{pagos.monto}]]</label>
+                                    <input type="int" class="form-control" name="monto" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="metodoPago">[[#{pagos.metodoPago}]]</label>
+                                    <input type="int" class="form-control" name="metodoPago" required="true"/>
+                                </div>
+                                
+                                </div>
+                                <div class="mb-3">
+                                    <label for="activo">[[#{pagos.activo}]]</label>
                                     <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                    <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
-                                    <img id="blah" src="#" alt="your image" height="200"/>
-                                </div>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
@@ -65,41 +72,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     </div>
                 </div>
             </div>
-
         </section>
 
-        <!-- 3 Seccion principal para mostrar la informacion de la entidad categoria-->
-        <section th:fragment="listadoArboles" id="arboles">
+        <section th:fragment="listadoPagos" id="Pagos">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
                             <div class="card-header">
-                                <h4>[[#{categoria.listado}]]</h4>
+                                <h4>[[#{pagos.listado}]]</h4>
                             </div>
-                            <div th:if="${categorias != null and !categorias.empty}">
-                                <table class="table table-striped table-hover">
-                                    <thead class="table-dark">
-                                        <tr><th>#</th>
-                                            <th>[[#{categoria.descripcion}]]</th>
-                                            <th>[[#{categoria.activo}]]</th>
-                                            <th></th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="categoria, contador : ${categorias}">
-                                            <td>[[${contador.count}]]</td>
-                                            <td>[[${categoria.descripcion}]]</td>
-                                            <td th:text="${categoria.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td><a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
-                                                   class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a>
-                                                <a th:href="@{/categoria/modificar/}+${categoria.idCategoria}"
-                                                   class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
-                                    </tbody>
-                                </table>
+                            <div th:if="${clientes != null and !clientes.empty}">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>[[#{pagos.id_pago}]]</th>
+                                                <th>[[#{pagos.id_producto1}]]</th>
+                                                <th>[[#{pagos.cantidad2}]]</th>
+                                                <th>[[#{pagos.monto}]]</th>
+                                                <th>[[#{pagos.metodoPago}]]</th>
+                                                <th>[[#{pagos.activo}]]</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr th:each="pagos, contador : ${pagos}">
+                                                <td>[[${contador.count}]]</td>
+                                                <th>[[${pagos.id_pago}]]</th>
+                                                <th>[[${pagos.id_producto1}]]</th>
+                                                <th>[[${pagos.cantidad2}]]</th>
+                                                <th>[[${pagos.monto}]]</th>
+                                                <th>[[${pagos.metodoPago}]]</th>
+                                                <td th:text="${pagos.activo} ? 'Activa' : 'Inactiva'"></td>
+                                                <td>
+                                                    <a th:href="@{/pagos/eliminar/}+${pagos.idPagos}" class="btn btn-danger">
+                                                        <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                                                    </a>
+                                                    <a th:href="@{/pagos/modificar/}+${pagos.idPagos}" class="btn btn-success">
+                                                        <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div class="text-center p-2" th:if="${categorias == null or categorias.empty}">
+                            <div class="text-center p-2" th:if="${pagos == null or clientes.empty}">
                                 <span>[[#{lista.vacia}]]</span>
                             </div>
                         </div>
@@ -107,8 +127,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                     <div class="col-md-3">
                         <div class="card text-center bg-success text-white mb-3">
                             <div class="card-body">
-                                <h3>[[#{categoria.total}]]</h3>
-                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalCategorias}]]</h4>
+                                <h3>[[#{cliente.total}]]</h3>
+                                <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalClientes}]]</h4>
                             </div>
                         </div>
                     </div>
@@ -116,22 +136,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </div>
         </section>
 
-        </section>
+    </section>
 
-        <!-- 4 Fragmento que se utiliza en la pagina modifica.html-->
-        <section th:fragment="editarArbol">
-            <section th:fragment="editarCategoria">
+    <!-- 4 Fragmento que se utiliza en la pagina modifica.html-->
+        <section th:fragment="editarPagos">
+            <section th:fragment="editarPagos">
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-8">
                         <form method="POST"
-                              th:action="@{/categoria/guardar}" 
-                              th:object="${categoria}"
+                              th:action="@{/pagos/guardar}" 
+                              th:object="${pagos}"
                               class="was-validated"                          
                               enctype="multipart/form-data">
-                            <input type="hidden" name="idCategoria" th:field="*{idCategoria}"/>
+                            <input type="hidden" name="idPagos" th:field="*{idPagos}"/>
                             <input type="hidden" name="rutaImagen" th:field="*{rutaImagen}"/>
-                            <section th:replace="~{categoria/fragmentos :: botonesEditar}"/>
+                            <section th:replace="~{cliente/fragmentos :: botonesEditar}"/>
                             <div id=details>
                                 <div class="container">
                                     <div class="row">
@@ -142,25 +162,44 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="mb-3">
-                                                        <label for="descripcion">[[#{categoria.descripcion}]]</label>
-                                                        <input type="text" class="form-control" 
-                                                               name="descripcion" th:field="*{descripcion}"
+                                                        <label for="id_pago">[[#{pagos.id_pago}]]</label>
+                                                        <input type="int" class="form-control" 
+                                                               name="id_pago" th:field="*{id_pago}"
                                                                required="true">
                                                     </div>
                                                     <div class="mb-3">
-                                                        <label for="activo">[[#{categoria.activo}]]</label>
+                                                        <label for="id_producto">[[#{pagos.id_producto]]</label>
+                                                        <input type="int" class="form-control" 
+                                                               name="id_producto" th:field="*{id_producto}"
+                                                               required="true">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="cantidad">[[#{pagos.cantidad}]]</label>
+                                                        <input type="int" class="form-cantidad" 
+                                                               name="cantidad" th:field="*{cantidad}"
+                                                               required="true">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="monto">[[#{pagos.monto}]]</label>
+                                                        <input type="int" class="form-control" 
+                                                               name="monto" th:field="*{monto}"
+                                                               required="true">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="metodoPago">[[#{pagos.metodoPago}]]</label>
+                                                        <input type="int" class="form-control" 
+                                                               name="metodoPago" th:field="*{metodoPago}"
+                                                               required="true">
+                                                    
+                                                    <div class="mb-3">
+                                                        <label for="activo">[[#{cliente.activo}]]</label>
                                                         <input class="form-check-input" 
                                                                type="checkbox" 
                                                                name="activo" 
                                                                id="activo"
                                                                th:field="*{activo}">
                                                     </div>
-                                                    <div class="mb-3">
-                                                        <label for="imagen">[[#{categoria.rutaImagen}]]</label>
-                                                        <input class="form-control" type="file" name="imagenFile"
-                                                               onchange="readURL(this);" />
-                                                        <img id="blah" th:src="@{${categoria.rutaImagen}}" alt="your image" height="200"/>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -177,12 +216,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="container py-4 mb-4 bg-light">
                     <div class="row">
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/categoria/listado}" class="btn btn-primary">
+                            <a th:href="@{/pagos/listado}" class="btn btn-primary">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
                         <div class="col-md-4 d-grid">                                
-                            <a th:href="@{/categoria/eliminar/}+${categoria.idCategoria}"
+                            <a th:href="@{/pagos/eliminar/}+${cliente.idPagos}"
                                class="btn btn-danger">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
