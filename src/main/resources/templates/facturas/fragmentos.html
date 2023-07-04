@@ -71,7 +71,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <label for="montoTotal">[[#{facturas.montoTotal}]]</label>
                                     <input type="int" class="form-control" name="montoTotal" required="true"/>
                                 </div>
-                                
+                               <div class="mb-3">
+                                    <label for="activo">[[#{facturas.activo}]]</label>
+                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn btn-primary" type="submit">Guardar</button>
@@ -96,11 +99,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                         <thead class="table-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th>[[#{facturas.id_pago}]]</th>
-                                                <th>[[#{facturas.id_producto}]]</th>
-                                                <th>[[#{facturas.cantidad}]]</th>
-                                                <th>[[#{facturas.monto}]]</th>
-                                                <th>[[#{facturas.metodoPago}]]</th>
+                                                <th>[[#{facturas.id_factura}]]</th>
+                                                <th>[[#{facturas.id_cliente}]]</th>
+                                                <th>[[#{facturas.id_empleado}]]</th>
+                                                <th>[[#{facturas.productos_adquiridos}]]</th>
+                                                <th>[[#{facturas.subtotal}]]</th>
+                                                <th>[[#{facturas.montoTotal}]]</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
