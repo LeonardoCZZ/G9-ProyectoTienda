@@ -35,7 +35,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <h5 class="modal-title">[[#{pagos.agregar}]]</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="POST" class="was-validated" enctype="multipart/form-data">
+                        <form th:action="@{/pagos/guardar}" th:object="${pagos}" method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="id_pago">[[#{pagos.id_pago}]]</label>
