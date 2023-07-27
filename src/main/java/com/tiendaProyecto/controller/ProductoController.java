@@ -4,40 +4,49 @@
  */
 package com.tiendaProyecto.controller;
 
+import com.tiendaProyecto.domain.Categoria;
 import com.tiendaProyecto.domain.Producto;
-import com.tiendaProyecto.service.ProductoService;
-import com.tiendaProyecto.service.impl.FirebaseStorageServiceImpl;
-import lombok.extern.slf4j.Slf4j;
+import com.tiendaProyecto.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.tiendaProyecto.service.ProductoService;
+import com.tiendaProyecto.service.impl.FirebaseStorageServiceImpl;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * @author PC
- */
 @Controller
-@Slf4j
 @RequestMapping("/producto")
 public class ProductoController {
-    
     @Autowired
     private ProductoService productoService;
-    
+    @Autowired
+    private CategoriaService categoriaService;
+
     @GetMapping("/listado")
-    public String inicio(Model model){
+    public String listado(Model model) {
         var productos = productoService.getProductos(false);
+        var categorias = categoriaService.getCategorias(false);
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
+        return "/producto/listado";
+    }
+
+    @GetMapping("/listado/{idCategoria}")
+    public String listado(Model model, Categoria categoria) {
+        var productos = categoriaService.getCategoria(categoria).getProductos();
+        var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("productos", productos);
+        model.addAttribute("totalProductos", productos.size());
+        model.addAttribute("categorias", categorias);
         return "/producto/listado";
     }
     
-    @GetMapping("/nuevo")
+     @GetMapping("/nuevo")
     public String productoNuevo(Producto producto){
         return "/producto/modifica";
     }
@@ -60,6 +69,7 @@ public class ProductoController {
         return "redirect:/producto/listado";
     }
     
+    
     @GetMapping("/eliminar/{idProducto}")
     public String productoEliminar(Producto producto){
         productoService.delete(producto);
@@ -72,4 +82,5 @@ public class ProductoController {
         model.addAttribute("producto", producto);
         return "/producto/modifica";
     }
+
 }

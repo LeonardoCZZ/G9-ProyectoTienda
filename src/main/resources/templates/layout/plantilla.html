@@ -33,6 +33,11 @@
       font-size: 40px;
       color: #8a2be2;
     }
+    
+    #container{
+        color:#d4c0f0
+    }
+    
   </style>
 </head>
 <body>
@@ -40,11 +45,10 @@
         <nav class="navbar navbar-expand-sm navbar-light bg-light p-0">
             <div class="container">
                 <a th:href="@{/}" class="navbar-brand">[[#{aplicacion.titulo}]]</a>
-                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <ul class="navbar-nav">
+                        <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
                         <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
                         <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/cliente/listado}">[[#{plantilla.clientes}]]</a></li>
                         <li class="nav-item px-2"><a class="nav-menu-link nav-link" th:href="@{/empleado/listado}">[[#{plantilla.empleados}]]</a></li>
