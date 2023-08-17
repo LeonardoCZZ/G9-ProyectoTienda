@@ -19,7 +19,17 @@ public class CarritoController {
     @Autowired
     private ProductoService productoService;
     
+    // ver el carrito en la pagina principal
+    @GetMapping("/")
+    public String index(Model model){
+        var productos = productoService.getProductos(false);
+        model.addAttribute("productos", productos);
+        return "index";
+    }
+
+    
     //Para ver el carrito
+    
     @GetMapping("/carrito/listado")
     public String inicio(Model model) {
         var items = itemService.gets();
@@ -81,6 +91,6 @@ public class CarritoController {
     @GetMapping("/facturar/carrito")
     public String facturarCarrito() {
         itemService.facturar();
-        return "redirect:/";
+        return "redirect:/carrito/listado";
     }
 }
