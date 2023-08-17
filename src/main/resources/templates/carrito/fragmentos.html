@@ -15,7 +15,7 @@
                      th:if="${productos != null and !productos.empty}">
                     <div class="card" th:each="producto : ${productos}">
                         <div class="card-body">
-                            <h5 class="card-title">[[${producto.descripcion}]]</h5>
+                            <h5 class="card-title">[[${producto.nombre}]]</h5>
                             <figure>
                                 <img th:src="@{${producto.rutaImagen}}" height="200"/>
                                 <figcaption>[[${producto.precio}+' ('+${producto.existencias}+')']]
@@ -28,7 +28,7 @@
                                         name="addCar" onclick="addCard(this.form)" 
                                         type="button"><i class="fas fa-cart-plus"></i></button>
                             </form>
-                            <p class="card-text">[[${producto.detalle}]]</p>                            
+                            <p class="card-text">[[${producto.descripcion}]]</p>                            
                         </div>
                     </div>
                 </div>
