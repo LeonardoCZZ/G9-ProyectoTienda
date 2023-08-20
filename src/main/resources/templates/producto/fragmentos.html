@@ -111,12 +111,12 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" style="background-color: purple; color: white">
                                 <h4>[[#{producto.listado}]]</h4>
                             </div>
                             <div th:if="${productos != null and !productos.empty}">
                                 <table class="table table-striped table-hover">
-                                    <thead class="table-dark">
+                                    <thead style="background-color: lightblue">
                                         <tr><th>#</th>
                                             <th class="text-center">[[#{producto.nombre}]]</th>
                                             <th class="text-center">[[#{producto.precio}]]</th>
@@ -137,11 +137,11 @@
                                             <td class="text-end">[[${#numbers.formatDecimal(producto.precio*producto.existencias, 1, 'DEFAULT', 2, 'DEFAULT')}]]</td>
                                             <td th:text="${producto.activo} ? 'Activa' : 'Inactiva'" /> 
                                             <td><a th:href="@{/producto/eliminar/}+${producto.idProducto}"
-                                                   class="btn btn-danger">
+                                                   class="btn btn-danger" style="background-color: pink">
                                                     <i class="fas fa-trash"></i> [[#{accion.eliminar}]]</a></td>
                                             <td>    
                                                 <a th:href="@{/producto/modificar/}+${producto.idProducto}"
-                                                   class="btn btn-success">
+                                                   class="btn btn-success" style="background-color: purple">
                                                     <i class="fas fa-pencil"></i> [[#{accion.actualizar}]]</a></td></tr>
                                     </tbody>
                                 </table>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="card text-center bg-success text-white mb-3">
+                        <div class="card text-center" style="background-color: lightblue; color: white;">
                             <div class="card-body">
                                 <h3>[[#{producto.total}]]</h3>
                                 <h4 class="fs-2"><i class="fas fa-users"></i> [[${totalProductos}]]</h4>
@@ -181,7 +181,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
-                                            <div class="card-header">
+                                            <div class="card-header text-white" style="background-color: purple">
                                                 <h4>[[#{accion.actualizar}]]</h4>
                                             </div>
                                             
@@ -249,18 +249,18 @@
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">
-                        <a th:href="@{/producto/listado}" class="btn btn-primary">
+                        <a th:href="@{/producto/listado}" class="btn btn-primary" style="background-color: purple">
                             <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">                                
                         <a th:href="@{/producto/eliminar/}+${producto.idProducto}"
-                           class="btn btn-danger">
+                           class="btn btn-danger" style="background-color: pink">
                             <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                         </a>
                     </div>
                     <div class="col-md-4 d-grid">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-success" style="background-color: purple">
                             <i class="fas fa-check"></i> [[#{accion.guardar}]]
                         </button>
                     </div>

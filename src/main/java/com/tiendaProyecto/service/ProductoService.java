@@ -6,6 +6,8 @@ package com.tiendaProyecto.service;
 
 import com.tiendaProyecto.domain.Producto;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  *
@@ -33,4 +35,5 @@ public interface ProductoService {
     
     //Lista de productos utilizando consultas con SQL Nativo
     public List<Producto> metodoNativo(double precioInf, double precioSup);
+
 }

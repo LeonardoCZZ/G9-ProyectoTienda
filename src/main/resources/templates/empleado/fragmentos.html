@@ -259,18 +259,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="container py-4 mb-4 bg-light">
                     <div class="row">
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/empleado/listado}" class="btn btn-primary">
+                            <a th:href="@{/empleado/listado}" class="btn btn-primary" style="background-color: purple">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
                         <div class="col-md-4 d-grid">                                
                             <a th:href="@{/empleado/eliminar/}+${empleado.idEmpleado}"
-                               class="btn btn-danger">
+                               class="btn btn-danger" style="background-color: pink">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
                         </div>
                         <div class="col-md-4 d-grid">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-success" style="background-color: purple">
                                 <i class="fas fa-check"></i> [[#{accion.guardar}]]
                             </button>
                         </div>

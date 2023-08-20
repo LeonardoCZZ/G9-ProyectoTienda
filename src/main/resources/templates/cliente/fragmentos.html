@@ -11,7 +11,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     </head>
     <body>
         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
-            <div class="container">
+            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
                 <div class="row">
                     <div class="col-md-3">   
                         <button 
@@ -122,6 +122,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 <th>[[${cliente.contrasena}]]</th>
                                                 <th>[[${cliente.direccion}]]</th>
                                                 <td th:text="${cliente.activo} ? 'Activa' : 'Inactiva'"></td>
+                                                <td sec:authorize="hasRole('ROLE_ADMIN')"></td>
                                                 <td>
                                                     <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}" class="btn btn-danger">
                                                         <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
@@ -251,18 +252,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <div class="container py-4 mb-4 bg-light">
                     <div class="row">
                         <div class="col-md-4 d-grid">
-                            <a th:href="@{/cliente/listado}" class="btn btn-primary">
+                            <a th:href="@{/cliente/listado}" class="btn btn-primary " style="background-color: purple">
                                 <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
                             </a>
                         </div>
                         <div class="col-md-4 d-grid">                                
                             <a th:href="@{/cliente/eliminar/}+${cliente.idCliente}"
-                               class="btn btn-danger">
+                               class="btn btn-danger" style="background-color: pink">
                                 <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
                             </a>
                         </div>
                         <div class="col-md-4 d-grid">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-success"style="background-color: purple">
                                 <i class="fas fa-check"></i> [[#{accion.guardar}]]
                             </button>
                         </div>
